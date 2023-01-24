@@ -1,17 +1,30 @@
 <script lang="ts">
     import type { Viewer } from "cesium";
     import { getContext } from "svelte"
+	import { api_nearest_k } from "../data/api";
 	import { position } from "../data/store";
     
     let x = 0.0;
 
     const getViewer: () => Viewer = getContext("viewer");
-    setInterval(()=> {
+    function screenCap(){
         const viewer = getViewer();
         if (viewer) {
-            x = viewer.camera.position.x;
-        }
-    }, 100)
+            viewer.render();
+            // base64
+            // const url = viewer.canvas.toDataURL();
+            // console.log(url);
+
+            // Blob
+            viewer.canvas.toBlob(async (blob)=>{
+                if (blob !== null) {
+                    console.log("Blob");
+                    const res = await api_nearest_k(blob);
+                    console.log(res);
+                }
+            }, "png");
+        }        
+    }
 
 </script>
 
@@ -48,5 +61,8 @@
         <div>
             {$position.z.toFixed(2) }
         </div>
+        <button on:click={screenCap}>
+            Print
+        </button>
     </span>
 </div>

@@ -1,7 +1,4 @@
 <div id="cesiumContainer">
-    {#if defined(entity)}
-		<Infobox entity={entity} />
-	{/if}
     <slot />
 </div>
 
@@ -13,8 +10,6 @@
 
     import { onMount, setContext } from 'svelte';
 	import { init } from '../data/init';
-
-    import Infobox from './Infobox.svelte';
 
     let viewer: Viewer;
 	let entity: Entity;
