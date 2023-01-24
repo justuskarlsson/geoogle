@@ -1,10 +1,10 @@
 from typing import Union
-from PIL import Image
-import io
 from fastapi import FastAPI, UploadFile, Form
 from fastapi.middleware.cors import CORSMiddleware
 
-from pydantic import BaseModel
+
+
+from server.nearest_k import nearest_k, NearestKResponse
 
 
 
@@ -26,23 +26,12 @@ app.add_middleware(
 
 
 @app.get("/")
-def read_root():
+def _():
     return {"Hello": "World"}
 
 
-class NearestK(BaseModel):
-    k: int = 10
-    tax: Union[float, None] = None
 
-
-async def nearest_k(img_upload: UploadFile, k: int):
-    b = await img_upload.read()
-    img = Image.open(io.BytesIO(b))
-    print(img, k)
-    return {
-        "matches": []
-    }
 
 @app.post("/nearest-k")
-async def post_nearest_k(img: UploadFile = Form(), k: int = Form()):
+async def _(img: UploadFile = Form(), k: int = Form()) -> NearestKResponse:
     return await nearest_k(img, k)

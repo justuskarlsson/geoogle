@@ -41,7 +41,19 @@ async function api_json(path: string, body: any) {
     });
 }
 
-export async function api_nearest_k(imageBlob: Blob, k: number = 10){
+export interface NearestKMatch {
+    id: number;
+    x: number;
+    y: number;
+    z: number;
+};
+
+interface ResponseNearestK {
+    matches: NearestKMatch[];
+    
+}
+
+export async function api_nearest_k(imageBlob: Blob, k: number = 10) : Promise<ResponseNearestK> {
     return api_form("/nearest-k", {
         "img": imageBlob,
         "extension": ".png",
