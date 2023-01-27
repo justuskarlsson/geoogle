@@ -3,12 +3,13 @@
 	"version": "0.0.1",
 	"private": true,
 	"scripts": {
-		"dev": "vite dev",
+		"dev": "vite dev --host",
 		"build": "vite build",
 		"preview": "vite preview",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"test:unit": "vitest",
+		"3d-tiles": "http-server /lustre/dev/jobo/issues/export_globe/nightly_20220116/globe/ -p 8000 --cors",
 		"lint": "prettier --plugin-search-dir . --check . && eslint .",
 		"format": "prettier --plugin-search-dir . --write .",
 		"generate-client": "(curl http://localhost:8000/openapi.json > openapi.json) && openapi --input ./openapi.json --output ./src/client --client fetch"
@@ -22,6 +23,7 @@
 		"eslint": "^8.28.0",
 		"eslint-config-prettier": "^8.5.0",
 		"eslint-plugin-svelte3": "^4.0.0",
+		"http-server": "^14.1.1",
 		"openapi-typescript-codegen": "^0.23.0",
 		"prettier": "^2.8.0",
 		"prettier-plugin-svelte": "^2.8.1",

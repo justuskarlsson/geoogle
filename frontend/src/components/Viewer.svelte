@@ -13,6 +13,7 @@
 
     let viewer: Viewer;
 	let entity: Entity;
+    const eglobe_path = "http://delirium:8000/eglobe.json";
 
     setContext("viewer", () => viewer);
 
@@ -23,6 +24,10 @@
         viewer = new Viewer('cesiumContainer', {
             terrainProvider: Cesium.createWorldTerrain()
         });
+
+        viewer.scene.primitives.add(new Cesium.Cesium3DTileset({
+            url : eglobe_path
+        }));
 
         const SF = Cesium.Cartesian3.fromDegrees(-122.407072, 37.800410, 400);
         
