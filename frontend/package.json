@@ -12,6 +12,7 @@
 		"3d-tiles": "http-server /lustre/dev/jobo/issues/export_globe/nightly_20220116/globe/ -p 8000 --cors",
 		"lint": "prettier --plugin-search-dir . --check . && eslint .",
 		"format": "prettier --plugin-search-dir . --write .",
+		"3d-tiles": "http-server 3d-tiles-samples/1.1 -p 8003 --cors ",
 		"generate-client": "(curl http://localhost:8000/openapi.json > openapi.json) && openapi --input ./openapi.json --output ./src/client --client fetch"
 	},
 	"devDependencies": {

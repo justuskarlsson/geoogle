@@ -1,0 +1,3 @@
+[submodule "frontend/3d-tiles-samples"]
+	path = frontend/3d-tiles-samples
+	url = https://github.com/CesiumGS/3d-tiles-samples

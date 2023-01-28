@@ -19,7 +19,7 @@ class NearestKResponse(BaseModel):
     matches: list[Match]
 
 data_path = "feat_vecs.pt"
-feat_vecs = []
+feat_vecs: list[torch.Tensor] = []
 try:
     feat_vecs = torch.load(data_path)
 except:
@@ -38,6 +38,7 @@ async def nearest_k(img_upload: UploadFile, k: int):
     feat_vec = encode(img)
     # add_to_dataset(feat_vec)
     print(len(feat_vecs))
+    print(type(feat_vecs))
     return NearestKResponse(
         matches=[
             Match(id=0, x=1.0, y=2.0, z=0.0)

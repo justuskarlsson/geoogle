@@ -10,6 +10,7 @@
 
     import { onMount, setContext } from 'svelte';
 	import { init } from '../data/init';
+	import { test_3d_tiles } from '../data/tileset_test';
 
     let viewer: Viewer;
 	let entity: Entity;
@@ -30,16 +31,10 @@
         }));
 
         const SF = Cesium.Cartesian3.fromDegrees(-122.407072, 37.800410, 400);
-        
-        // // Add Cesium OSM Buildings, a global 3D buildings layer.
-        // const buildingTileset = viewer.scene.primitives.add(Cesium.createOsmBuildings());   
-        
-        // const tileset = viewer.scene.primitives.add(
-        //     new Cesium.Cesium3DTileset({
-        //         url: Cesium.IonResource.fromAssetId(1415196),
-        //     })
-        // );
 
+        
+        test_3d_tiles(viewer, false);
+        
         // Fly the camera to San Francisco at the given longitude, latitude, and height.
         viewer.camera.flyTo({
             destination : SF,
@@ -49,15 +44,9 @@
             },
             duration: 0.1
         });
-
+        
         init(viewer);
-
-        // Update entity object on selection/deselection.
-		viewer.selectedEntityChanged.addEventListener(() => {
-			if (viewer.selectedEntity !== undefined) {
-                entity = viewer.selectedEntity;
-            }
-		});
+        
     });
   
 
