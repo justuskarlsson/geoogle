@@ -9,7 +9,6 @@
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"test:unit": "vitest",
-		"3d-tiles": "http-server /lustre/dev/jobo/issues/export_globe/nightly_20220116/globe/ -p 8000 --cors",
 		"lint": "prettier --plugin-search-dir . --check . && eslint .",
 		"format": "prettier --plugin-search-dir . --write .",
 		"3d-tiles": "http-server 3d-tiles-samples/1.1 -p 8003 --cors ",
